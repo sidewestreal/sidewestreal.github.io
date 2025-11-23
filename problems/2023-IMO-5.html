@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2023 IMO P5</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.querySelector("p"), {
+                delimiters: [
+                    {left: "$", right: "$", display: false},
+                    {left: "$$", right: "$$", display: true}
+                ]
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>2023 IMO P5</h1>
+    <p>Let $n$ be a positive integer. A <i>Japanese triangle</i> consists of $1 + 2 + \dots + n$ circles arranged in an equilateral triangular shape such that for each $i = 1$, $2$, $\dots$, $n$, the $i^{th}$ row contains exactly $i$ circles, exactly one of which is coloured red. A <i>ninja path</i> in a Japanese triangle is a sequence of $n$ circles obtained by starting in the top row, then repeatedly going from a circle to one of the two circles immediately below it and finishing in the bottom row. In terms of $n$, find the greatest $k$ such that in each Japanese triangle there is a ninja path containing at least $k$ red circles.</p>
+</body>
+</html>

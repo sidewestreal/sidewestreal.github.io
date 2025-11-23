@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2023 IMO P3</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.querySelector("p"), {
+                delimiters: [
+                    {left: "$", right: "$", display: false},
+                    {left: "$$", right: "$$", display: true}
+                ]
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>2023 IMO P3</h1>
+    <p>For each integer $k\geq 2$, determine all infinite sequences of positive integers $a_1$, $a_2$, $\ldots$ for which there exists a polynomial $P$ of the form \[ P(x)=x^k+c_{k-1}x^{k-1}+\dots + c_1 x+c_0, \] where $c_0$, $c_1$, $\dots$, $c_{k-1}$ are non-negative integers, such that \[ P(a_n)=a_{n+1}a_{n+2}\cdots a_{n+k} \] for every integer $n\geq 1$.</p>
+</body>
+</html>

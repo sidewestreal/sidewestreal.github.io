@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2023 IMO P1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            renderMathInElement(document.querySelector("p"), {
+                delimiters: [
+                    {left: "$", right: "$", display: false},
+                    {left: "$$", right: "$$", display: true}
+                ]
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>2023 IMO P1</h1>
+    <p>Determine all composite integers $n>1$ that satisfy the following property: if $d_1$, $d_2$, $\ldots$, $d_k$ are all the positive divisors of $n$ with $1 = d_1 < d_2 < \cdots < d_k = n$, then $d_i$ divides $d_{i+1} + d_{i+2}$ for every $1 \leq i \leq k - 2$.</p>
+</body>
+</html>

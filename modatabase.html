@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MO Database</title>
+    <!-- KaTeX CSS and JS for rendering mathematical expressions -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>MO Database</h1>
+    <p>Input problem ID to browse problems.</p>
+    <label for="problem-id">Problem ID:</label>
+    <input type="text" id="problem-year" placeholder="Year" size="4">
+    <input type="text" id="problem-contest" placeholder="Contest" size="4">
+    <input type="text" id="problem-number" placeholder="Number" size="4">
+    <button onclick="openProblem()">Browse</button>
+    <script>
+        function openProblem() {
+            const year = document.getElementById("problem-year").value.trim();
+            const contest = document.getElementById("problem-contest").value.trim();
+            const number = document.getElementById("problem-number").value.trim();
+            const id = year && contest && number ? `${year}-${contest}-${number}` : null;
+            if(!id) return;
+            window.location.href = `problems/${id}.html`;
+        }
+    </script>
+</body>
+</html>
