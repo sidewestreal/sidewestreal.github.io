@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--Submission form for new problems-->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -16,7 +17,7 @@
   </style>
 </head>
 <body>
-  <h1>Add Problem (JSON fields)</h1>
+  <h1>Add Problem</h1>
   <p class="muted">This is the input form only — no submission script yet. Fill the fields that will go into the JSON entry.</p>
 
   <form id="add-problem-form">
@@ -33,48 +34,28 @@
         <label for="number">Number</label>
         <input id="number" name="number" type="number" placeholder="1">
       </div>
-      <div class="col">
-        <label for="id">ID (optional)</label>
-        <input id="id" name="id" type="text" placeholder="2023-IMO-1 — auto-generated if blank">
-      </div>
     </div>
 
     <label for="title">Title</label>
     <input id="title" name="title" type="text" placeholder="Short title, e.g. 2023 IMO P1">
 
-    <label for="statement">Statement (HTML/LaTeX allowed)</label>
+    <label for="statement">Statement (HTML/LaTeX recommended)</label>
     <textarea id="statement" name="statement" rows="6" placeholder="Problem statement goes here"></textarea>
-
-    <label for="notes">Notes (optional)</label>
-    <textarea id="notes" name="notes" rows="2" placeholder="Notes or author/source info"></textarea>
-
-    <label for="solution">Solution (optional)</label>
-    <textarea id="solution" name="solution" rows="4" placeholder="Solution text (can be left empty)"></textarea>
 
     <div class="row">
       <div class="col">
-        <label for="tags">Tags (comma-separated)</label>
+        <label for="tags">Tags (not implemented yet)</label>
         <input id="tags" name="tags" type="text" placeholder="e.g. number theory, divisibility">
       </div>
       <div class="col small">
         <label for="subject">Subject</label>
-        <input id="subject" name="subject" type="text" placeholder="e.g. N, A, G">
+        <input id="subject" name="subject" type="text" placeholder="A, C, G, N">
       </div>
       <div class="col small">
         <label for="difficulty">Difficulty</label>
         <input id="difficulty" name="difficulty" type="number" placeholder="10">
       </div>
-      <div class="col small">
-        <label for="placeholder">Placeholder</label>
-        <select id="placeholder" name="placeholder">
-          <option value="false">false</option>
-          <option value="true">true</option>
-        </select>
-      </div>
     </div>
-
-    <label for="source">Source</label>
-    <input id="source" name="source" type="text" placeholder="IMO 2023">
 
     <div class="actions">
       <button type="button" onclick="document.getElementById('add-problem-form').reset()">Reset</button>
