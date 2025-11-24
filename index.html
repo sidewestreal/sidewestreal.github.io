@@ -15,10 +15,123 @@
             margin: 20px;
             background-color: #f9f9f9;
             color: #333;
+
+        /* 상단 네비게이션 바 */
+        .navbar {
+            background-color: #343a40;
+            color: white;
+            padding: 0 20px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            position: relative; /* dropdown 위치 기준 */
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .nav-link:hover {
+            color: #ffc107;
+        }
+
+        /* 드롭다운 기본: 숨김 */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            color: #333;
+            min-width: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 6px 0;
+            display: none; /* 처음에는 안 보이게 */
+            z-index: 1000;
+        }
+
+        .dropdown li {
+            list-style: none;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 8px 12px;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .dropdown a:hover {
+            background-color: #f1f3f5;
+        }
+
+        /* ★ 핵심: nav-item 위에 마우스 올렸을 때만 dropdown 보이게 */
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        /* 본문 영역 패딩 (예전 body margin:20px 대신) */
+        .page-container {
+            padding: 20px;
+        }
+
         }
     </style>
 </head>
 <body>
+
+    <!-- 상단 네비게이션 -->
+    <nav class="navbar">
+        <div class="navbar-brand">MO Database</div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link">Problems</a>
+                <ul class="dropdown">
+                    <li><a href="#">IMO</a></li>
+                    <li><a href="#">APMO</a></li>
+                    <li><a href="#">KMO</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">Status</a>
+                <ul class="dropdown">
+                    <li><a href="#">Submissions</a></li>
+                    <li><a href="#">Judge Queue</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">About</a>
+                <ul class="dropdown">
+                    <li><a href="#">Project Info</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
     <h1>MO Database</h1>
     <p>Input problem ID to browse problems. I only uploaded 2023 IMO problems yet. Input like 2023, IMO, 3.</p>
     <label for="problem-id">Problem ID:</label>
