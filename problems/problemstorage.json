@@ -1,0 +1,12 @@
+{
+    /* This file is for storing problem data.
+    The data we need to store for each problem is:
+    Problem ID (currently year-contest-number format)
+    Year
+    Contest
+    Problem number
+    Subject
+    Title (not sure)
+    Difficulty
+    Statement */
+}
