@@ -138,16 +138,96 @@
     <input type="text" id="problem-year" placeholder="Year" size="4" autocomplete="off">
     <input type="text" id="problem-contest" placeholder="Contest" size="4" autocomplete="off">
     <input type="text" id="problem-number" placeholder="Number" size="4" autocomplete="off">
-    <button onclick="openProblem()">Browse</button>
+    <button id="browse-btn">Browse</button>
+    <div id="problem-display" style="margin-top:20px;padding:16px;background:white;border:1px solid #e6e6e6;border-radius:6px;display:none;">
+        <!-- dynamically filled -->
+    </div>
     <script>
-        function openProblem() {
-            const year = document.getElementById("problem-year").value.trim();
-            const contest = document.getElementById("problem-contest").value.trim().toUpperCase();
-            const number = document.getElementById("problem-number").value.trim();
-            const id = year && contest && number ? `${year}-${contest}-${number}` : null;
-            if(!id) return;
-            window.location.href = `problems/${id}.html`;
+        let problemData = null;
+        // loading problems from json
+        async function loadProblemData(){
+            if(problemData) return problemData;
+            try{
+                const res = await fetch('problems/problemstorage.json');
+                if(!res.ok) throw new Error('Could not load problemstorage.json');
+                problemData = await res.json();
+                return problemData;
+            }catch(e){
+                console.error(e);
+                alert('Failed to load problems/problemstorage.json');
+                return null;
+            }
         }
+
+        function makeTitle(item){
+            return `${item.year} ${item.contest} P${item.number}`;
+        }
+
+        function renderProblem(item){
+            const container = document.getElementById('problem-display');
+            container.style.display = 'block';
+            container.innerHTML = '';
+
+            const title = document.createElement('h2');
+            title.textContent = makeTitle(item);
+            container.appendChild(title);
+
+            const meta = document.createElement('div');
+            meta.innerHTML = `<strong>Subject:</strong> ${item.subject || 'N/A'} &nbsp; <strong>Difficulty:</strong> ${item.difficulty || 'N/A'}`;
+            container.appendChild(meta);
+
+            const stmtBox = document.createElement('div');
+            stmtBox.style.marginTop = '12px';
+            // statement in JSON may contain HTML (e.g., <i>) and LaTeX delimiters $...$
+            stmtBox.innerHTML = item.statement || '<em>No statement available.</em>';
+            container.appendChild(stmtBox);
+
+            // try to render math in the newly inserted statement
+            if(typeof renderMathInElement === 'function'){
+                try{
+                    renderMathInElement(stmtBox, {
+                        delimiters: [
+                            {left: '$$', right: '$$', display: true},
+                            {left: '$', right: '$', display: false}
+                        ]
+                    });
+                }catch(e){
+                    // ignore render errors
+                    console.warn('KaTeX render error', e);
+                }
+            }
+        }
+
+        async function openProblem(){
+            const year = document.getElementById('problem-year').value.trim();
+            const contest = document.getElementById('problem-contest').value.trim().toUpperCase();
+            const number = document.getElementById('problem-number').value.trim();
+            if(!year || !contest || !number){
+                alert('Please enter Year, Contest and Number (e.g. 2023 IMO 3)');
+                return;
+            }
+
+            const id = `${year}-${contest}-${number}`;
+            const data = await loadProblemData();
+            if(!data || !Array.isArray(data.problems)){
+                alert('Problems data is not available or malformed.');
+                return;
+            }
+
+            const item = data.problems.find(p => p.id === id || (String(p.year)===year && String(p.contest).toUpperCase()===contest && String(p.number)===number));
+            if(!item){
+                alert(`Problem ${id} not found in problemstorage.json`);
+                return;
+            }
+
+            renderProblem(item);
+        }
+
+        document.getElementById('browse-btn').addEventListener('click', openProblem);
+        // allow Enter key in inputs
+        ['problem-year','problem-contest','problem-number'].forEach(id=>{
+            document.getElementById(id).addEventListener('keydown', e=>{ if(e.key==='Enter') openProblem(); });
+        });
     </script>
 </body>
 </html>
