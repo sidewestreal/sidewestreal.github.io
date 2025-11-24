@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--single backlash causes error and is pain.-->
+<!--so my generous self helps nerds who can't bother looking for every single backslash.-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Double the Backslash</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;}
+    body{max-width:900px;margin:28px auto;padding:20px;line-height:1.4}
+    h1{font-size:1.4rem;margin:0 0 12px}
+    textarea{width:100%;min-height:160px;padding:12px;font-family:monospace;font-size:14px;border-radius:8px;border:1px solid #ddd;box-sizing:border-box}
+    .controls{display:flex;gap:8px;align-items:center;margin:10px 0}
+    button{padding:8px 12px;border-radius:8px;border:1px solid #bbb;background:#f7f7f7;cursor:pointer}
+    button:active{transform:translateY(1px)}
+    .muted{color:#666;font-size:13px}
+  </style>
+</head>
+<body>
+  <h1>Backslash → Double Backslash</h1>
+  <p class="muted">Paste or type any text below. Every backslash (<code>\</code>) will be converted to two backslashes (<code>\\</code>).</p>
+
+  <label for="input">Input</label>
+  <textarea id="input" placeholder="Paste text here... (supports large text)"></textarea>
+
+  <div class="controls">
+    <label><input type="checkbox" id="auto" checked> Auto-convert</label>
+    <button id="convert">Convert</button>
+    <button id="copy">Copy output</button>
+    <div style="margin-left:auto;" class="muted">Shortcut: Ctrl+Enter to convert</div>
+  </div>
+
+  <label for="output">Output (converted)</label>
+  <textarea id="output" readonly placeholder="Converted text will appear here"></textarea>
+
+  <script>
+    const inEl = document.getElementById('input');
+    const outEl = document.getElementById('output');
+    const auto = document.getElementById('auto');
+    const convertBtn = document.getElementById('convert');
+    const copyBtn = document.getElementById('copy');
+
+    function convert() {
+      // Replace every single backslash with two backslashes
+      // Using a global regex that matches a single backslash
+      outEl.value = inEl.value.replace(/\\/g, "\\\\");
+    }
+
+    // Live behavior
+    inEl.addEventListener('input', () => { if (auto.checked) convert(); });
+    convertBtn.addEventListener('click', convert);
+
+    // Copy to clipboard with fallback
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(outEl.value);
+        copyBtn.textContent = 'Copied ✓';
+        setTimeout(() => copyBtn.textContent = 'Copy output', 1200);
+      } catch (err) {
+        // Fallback: select + prompt
+        outEl.select();
+        try {
+          document.execCommand('copy');
+          copyBtn.textContent = 'Copied ✓';
+          setTimeout(() => copyBtn.textContent = 'Copy output', 1200);
+        } catch (e) {
+          // As last resort show prompt so user can Ctrl+C
+          window.prompt('Copy the converted text (Ctrl+C / ⌘C):', outEl.value);
+        }
+      }
+    });
+
+    // Keyboard shortcut: Ctrl/Cmd + Enter to convert
+    inEl.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        convert();
+      }
+    });
+
+    // Select output when focused to make copying easier
+    outEl.addEventListener('focus', () => outEl.select());
+
+    // Small convenience: preserve whitespace when dragging/dropping files (prevents browser open)
+    ['dragover','drop'].forEach(ev => document.addEventListener(ev, (e)=>e.preventDefault()));
+  </script>
+</body>
+</html>
