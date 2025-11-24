@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Lemmas & Problems Placeholder</title>
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <!-- KaTeX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {delimiters: [ {left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false} ]});"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 2em;
+            background: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        h1, h2 {
+            color: #2d3a4b;
+        }
+        .lemma, .problem, .solution {
+            margin-bottom: 2em;
+        }
+        .lemma {
+            border-left: 4px solid #4e8cff;
+            padding-left: 1em;
+        }
+        .problem {
+            border-left: 4px solid #ffb84e;
+            padding-left: 1em;
+        }
+        .solution {
+            border-left: 4px solid #4effb8;
+            padding-left: 1em;
+            background: #f6fff9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mathematical Lemmas, Problems & Solutions</h1>
+        <div class="lemma">
+            <h2>Lemma Example</h2>
+            <p>If $a, b \in \mathbb{R}$, then $a^2 + b^2 \geq 0$.</p>
+        </div>
+        <div class="problem">
+            <h2>Problem Example</h2>
+            <p>Prove that for all $x \in \mathbb{R}$, $x^2 \geq 0$.</p>
+        </div>
+        <div class="solution">
+            <h2>Solution Example</h2>
+            <p>Since $x^2 = x \cdot x$ and the product of two real numbers with the same sign is non-negative, $x^2 \geq 0$ for all $x \in \mathbb{R}$.</p>
+        </div>
+        <!-- Add more lemmas, problems, and solutions below -->
+    </div>
+</body>
+</html>
